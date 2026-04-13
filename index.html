@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOFI TALKS | THE BAKERS OF 19TH CENTURY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #C5A059;
+            --dark-royal: #0a0a0a;
+            --white-ivory: #ffffff;
+        }
+
+        /* Security: Prevent Text Selection */
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            -webkit-user-select: none; -ms-user-select: none; user-select: none; 
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #050505; color: #e0e0e0; 
+            overflow-x: hidden; scroll-behavior: smooth;
+        }
+
+        /* Header & Logo */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+        }
+
+        .logo-container img {
+            width: 150px; height: 150px; border-radius: 50%;
+            border: 4px solid var(--gold); padding: 5px; background: white;
+            object-fit: cover; box-shadow: 0 0 20px rgba(197, 160, 89, 0.5); margin-bottom: 20px;
+        }
+
+        header h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; letter-spacing: 4px; margin-bottom: 10px; }
+        header h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); color: var(--white-ivory); margin-bottom: 5px; }
+        header p { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--gold); }
+
+        /* Navigation */
+        nav { background: rgba(10, 10, 10, 0.95); padding: 1.2rem; position: sticky; top: 0; z-index: 1000; text-align: center; border-bottom: 1px solid var(--gold); backdrop-filter: blur(10px); }
+        nav a { color: var(--white-ivory); text-decoration: none; margin: 0 15px; font-weight: 400; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s; }
+        nav a:hover { color: var(--gold); }
+
+        /* Gallery */
+        .gallery-container { padding: 60px 0; background: #0a0a0a; }
+        .section-title { text-align: center; font-family: 'Cinzel', serif; margin-bottom: 40px; font-size: 2.2rem; color: var(--gold); }
+        .scroll-wrapper { display: flex; overflow-x: auto; gap: 25px; padding: 20px 50px; scrollbar-width: none; }
+        .scroll-wrapper::-webkit-scrollbar { display: none; }
+        .scroll-item { min-width: 350px; height: 250px; border-radius: 15px; object-fit: cover; border: 1px solid rgba(197, 160, 89, 0.3); transition: 0.5s; }
+
+        /* Menu Section */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 60px 10%; background: #050505; }
+        .card { background: #111; padding: 20px; text-align: center; border-radius: 20px; border: 1px solid #222; transition: 0.4s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card img { width: 100%; height: 230px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
+        .card h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
+        
+        .order-btn {
+            background: transparent; color: var(--gold); padding: 12px 30px; text-decoration: none;
+            display: inline-block; border: 1px solid var(--gold); font-weight: 600;
+            border-radius: 50px; transition: 0.3s; cursor: pointer;
+        }
+        .order-btn:hover { background: var(--gold); color: black; }
+
+        /* Contact Section */
+        .contact-container { background: #0a0a0a; padding: 80px 10%; text-align: center; border-top: 1px solid #222; }
+        .contact-details { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
+        .contact-box { background: #111; padding: 30px; border-radius: 15px; width: 280px; border-bottom: 3px solid var(--gold); transition: 0.3s; cursor: pointer; }
+        .contact-box i { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .contact-box h4 { margin-bottom: 10px; font-family: 'Cinzel', serif; }
+        .contact-box a, .contact-box span { color: #aaa; text-decoration: none; font-size: 0.9rem; }
+
+        footer { text-align: center; padding: 40px; background: #000; color: #444; font-size: 0.75rem; }
+
+        /* Success Message Overlay */
+        #success-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;
+            text-align: center; flex-direction: column; padding: 20px;
+        }
+        #success-overlay h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom: 20px; }
+    </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+    <div id="success-overlay">
+        <h2>THANK YOU FOR CONTACTING SOFI TALK'S</h2>
+        <p style="color: white; margin-bottom: 20px;">Your request is being processed. We will get back to you shortly!</p>
+        <button onclick="closeSuccess()" class="order-btn">BACK TO MENU</button>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="C:\Users\khanm\OneDrive\Pictures\Screenshots\Screenshot 2026-04-04 210448.png" alt="Sofi Talk's Logo">
+        </div>
+        <h2>TO PREPARE MODERN HISTORY</h2>
+        <h1>SOFI TALK'S</h1>
+        <p>THE BAKERS OF 19TH CENTURY</p>
+    </header>
+
+    <nav>
+        <a href="#gallery">Collection</a>
+        <a href="#menu">Signature Menu</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <section id="gallery" class="gallery-container">
+        <h2 class="section-title">The Royal Gallery</h2>
+        <div class="scroll-wrapper">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.17 PM (1).jpeg" class="scroll-item">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.17 PM (2).jpeg" class="scroll-item">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.17 PM.jpeg" class="scroll-item">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.18 PM (1).jpeg"class="scroll-item">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.18 PM (2).jpeg"class="scroll-item">
+            <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.18 PM.jpeg"class="scroll-item">
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Signature Delicacies</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.18 PM (1).jpeg">
+                <h3>Desi Gee Dry fruit kulcha</h3>
+                <p>Salty</p>
+                <button onclick="placeOrder('Desi Gee Dry fruit kulcha')" class="order-btn">PLACE ORDER</button>
+            </div>
+
+            <div class="card">
+                <img src="C:\Users\khanm\OneDrive\Desktop\sofiweb\WhatsApp Image 2026-04-13 at 2.22.18 PM (2).jpeg">
+                <h3>Kashmiri Dry Fruit Roath</h3>
+                <p>Sweet</p>
+                <button onclick="placeOrder('Kashmiri Dry Fruit Roath')" class="order-btn">PLACE ORDER</button>
+            </div>
+
+            <!-- <div class="card">
+                <img src="https://images.unsplash.com/photo-1582298538104-fe2e74c27f59?w=500">
+                <h3>Artisan Golden Bread</h3>
+                <p>Organic sourdough grains staple.</p>
+                <button onclick="placeOrder('Artisan Golden Bread')" class="order-btn">PLACE ORDER</button>
+            </div> -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact-container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-details">
+            <div class="contact-box" onclick="window.open('https://www.google.com/maps/@34.1277723,74.8431088,94m/data=!3m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D')">
+                <i class="fa-solid fa-location-dot"></i>
+                <h4>Address</h4>
+                <span>Srinagar, J&K</span>
+            </div>
+
+            <div class="contact-box" onclick="window.location.href='tel:+919070150647'">
+                <i class="fa-solid fa-phone-volume"></i>
+                <h4>Call Us</h4>
+                <span>+91 9070150647</span>
+            </div>
+
+            <div class="contact-box" onclick="sendEmail()">
+                <i class="fa-solid fa-envelope"></i>
+                <h4>Email</h4>
+                <span id="email-addr">sofitalks19@gmail.com</span>
+                <p style="font-size: 10px; color: var(--gold); margin-top: 5px;">(Click to Send Mail)</p>
+            </div>
+
+            <div class="contact-box" onclick="window.open('https://instagram.com/sofitalks_19th_baker', '_blank')">
+                <i class="fa-brands fa-instagram"></i>
+                <h4>Instagram</h4>
+                <span>@sofitalks_19th_baker</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 SOFI TALK'S | ALL RIGHTS RESERVED. <br>
+        PROHIBITED TO COPY CONTENT WITHOUT AUTHORIZATION.<br><br>
+             <i><b><p style="color: red;">DESIGNED & DEVELOPED BY<br>MK Enterprises </p></b></i>
+    </footer>
+
+    <script>
+        // Common Success Overlay Function
+        function showSuccess() {
+            document.getElementById('success-overlay').style.display = 'flex';
+        }
+
+        function closeSuccess() {
+            document.getElementById('success-overlay').style.display = 'none';
+        }
+
+        // WhatsApp Order Logic
+        function placeOrder(itemName) {
+            const phone = "919070150647";
+            const message = `Hello SOFI TALK'S, I want to order: *${itemName}*.: `;
+            const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+            showSuccess();
+        }
+
+        // Email Automation Logic
+        
+function sendEmail() {
+    const email = "sofitalks19@gmail.com";
+    const subject = encodeURIComponent("Inquiry from Website");
+    const body = encodeURIComponent("Hello Sofi Talk's, I am interested...");
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+
+    window.open(gmailUrl, '_blank');
+
+    setTimeout(showSuccess, 1000);
+            
+            // This triggers the email app
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            
+            // This shows the Thank You message after a tiny delay
+            setTimeout(showSuccess, 1000);
+        }
+
+        // Security: Disable Keys (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+                return false;
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
