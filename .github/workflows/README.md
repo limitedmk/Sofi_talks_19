@@ -1,5 +1,5 @@
 <img width="868" height="1156" alt="image" src="https://github.com/user-attachments/assets/c8f49dde-04c5-41e7-9a03-1243f0b63f6c" />![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true)
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM.jpeg?raw=true)
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM.jpeg?raw=true)
-![image alt]()
+![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(2).jpeg?raw=true)
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM.jpeg?raw=true))
