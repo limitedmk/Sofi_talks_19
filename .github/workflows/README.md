@@ -6,4 +6,4 @@
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(2).jpeg?raw=true)
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true)
 ![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true)
-![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true)
+![image alt](https://github.com/limitedmk/Sofi_talks_19/blob/main/Screenshot%202026-04-04%20210448.png?raw=true)
