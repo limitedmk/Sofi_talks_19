@@ -9,21 +9,22 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --gold: #D4AF37;
-            --gold-glow: rgba(212, 175, 55, 0.25);
-            --dark-bg: #070708;
-            --card-bg: #111113;
-            --white-ivory: #FDFBF7;
-            --text-muted: #A0A0A5;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --gold: #C5A059;
+            --gold-dim: rgba(197, 160, 89, 0.2);
+            --obsidian: #0b0a0a;
+            --velvet-card: #121111;
+            --ivory: #F5F4F0;
+            --muted: #8E8C84;
+            --bezier: cubic-bezier(0.25, 1, 0.5, 1);
+            --transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Hardened Security CSS: Anti-Selection, Anti-Copy, Anti-Tap-Highlight */
+        /* Anti-Copy & Structural Reset */
         * { 
             margin: 0; padding: 0; box-sizing: border-box; 
             -webkit-user-select: none !important;
@@ -34,157 +35,181 @@
             -webkit-tap-highlight-color: transparent !important;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; background-color: var(--obsidian); }
         body { 
-            font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: #e8e8e8; 
-            overflow-x: hidden; line-height: 1.6;
+            font-family: 'Montserrat', sans-serif; background-color: var(--obsidian); color: var(--ivory); 
+            overflow-x: hidden; line-height: 1.7; letter-spacing: 0.5px;
         }
 
-        /* Custom Premium Scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0b; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+        /* Premium Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--obsidian); }
+        ::-webkit-scrollbar-thumb { background: #262422; border-radius: 0; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* Hero Header Section */
-        header {
-            position: relative; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(7,7,8,1)), 
-                        url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+        /* Typography Animation Keyframes */
+        @keyframes trackingExpand {
+            0% { letter-spacing: 2px; opacity: 0; transform: translateY(15px); }
+            100% { letter-spacing: 6px; opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        .logo-container { position: relative; margin-bottom: 25px; }
-        .logo-container img {
-            width: 140px; height: 140px; border-radius: 50%;
-            border: 2px solid var(--gold); padding: 6px; background: #fff;
-            object-fit: cover; box-shadow: 0 0 30px var(--gold-glow);
+        /* Editorial Hero Header */
+        header {
+            position: relative; height: 100vh; width: 100%;
+            background: linear-gradient(to bottom, rgba(11,10,10,0.4) 0%, rgba(11,10,10,0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px;
+        }
+
+        .logo-frame { position: relative; margin-bottom: 40px; animation: fadeIn 2s var(--bezier); }
+        .logo-frame img {
+            width: 130px; height: 130px; border-radius: 50%;
+            border: 1px solid var(--gold); padding: 8px; background: #fff;
+            object-fit: cover; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             transition: var(--transition);
         }
+        .logo-frame:hover img { transform: scale(1.03); border-color: var(--ivory); }
 
-        .logo-container::after {
-            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%; border: 1px dashed var(--gold); opacity: 0.4;
-            animation: spin 25s linear infinite;
+        header h2 { 
+            font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.9rem; 
+            font-weight: 400; text-transform: uppercase; margin-bottom: 15px;
+            animation: trackingExpand 1.5s var(--bezier) forwards;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        header h1 { 
+            font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 6.5vw, 5rem); 
+            color: var(--ivory); letter-spacing: 4px; font-weight: 400; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+        }
+        header p { 
+            font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; 
+            color: var(--gold); opacity: 0.85; font-weight: 400;
+        }
 
-        header h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; letter-spacing: 6px; margin-bottom: 15px; font-weight: 400; }
-        header h1 { font-family: 'Cinzel', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: var(--white-ivory); letter-spacing: 2px; font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-        header p { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--gold); margin-top: 10px; opacity: 0.9; }
-
-        /* Sticky Navigation Bar */
+        /* Sticky Minimal Navigation */
         nav { 
-            background: rgba(10, 10, 12, 0.85); padding: 1.2rem; position: sticky; top: 0; z-index: 1000; 
-            text-align: center; border-bottom: 1px solid rgba(197, 160, 89, 0.15); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(11, 10, 10, 0.92); padding: 1.5rem; position: sticky; top: 0; z-index: 1000; 
+            text-align: center; border-bottom: 1px solid rgba(197, 160, 89, 0.1); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
         nav a { 
-            color: var(--white-ivory); text-decoration: none; margin: 0 20px; font-weight: 400; 
-            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 3px; transition: var(--transition); 
+            color: var(--muted); text-decoration: none; margin: 0 25px; font-weight: 300; 
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 4px; transition: var(--transition); 
             display: inline-block; position: relative; padding: 5px 0;
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background: var(--gold); transition: var(--transition); transform: translateX(-50%); }
-        nav a:hover { color: var(--gold); }
+        nav a:hover { color: var(--ivory); }
         nav a:hover::after { width: 100%; }
 
-        /* Titles */
-        .section-title { 
-            text-align: center; font-family: 'Cinzel', serif; margin-bottom: 50px; font-size: 2.4rem; 
-            color: var(--gold); letter-spacing: 3px; font-weight: 600; position: relative; padding-bottom: 15px;
-        }
-        .section-title::after { content: '♦'; font-size: 0.8rem; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); color: var(--gold); }
+        /* Structural Layout Definitions */
+        .section-header { text-align: center; padding: 120px 20px 60px 20px; max-width: 800px; margin: 0 auto; }
+        .section-header h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold); font-weight: 400; letter-spacing: 3px; margin-bottom: 15px; }
+        .section-header p { font-family: 'Playfair Display', serif; font-style: italic; color: var(--muted); font-size: 1.1rem; }
 
-        /* Protected Image Gallery Layout */
-        .gallery-container { padding: 100px 0; background: #0a0a0c; border-bottom: 1px solid #141416; }
-        .scroll-wrapper { display: flex; overflow-x: auto; gap: 30px; padding: 20px max(5%, 20px); scrollbar-width: none; snap-type: x mandatory; }
+        /* Gallery Carousel Layout */
+        .gallery-container { padding-bottom: 120px; background: var(--obsidian); }
+        .scroll-wrapper { display: flex; overflow-x: auto; gap: 35px; padding: 20px max(8%, 30px); scrollbar-width: none; snap-type: x mandatory; }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
-        
         .scroll-item { 
-            min-width: 380px; height: 270px; border-radius: 12px; object-fit: cover; 
-            border: 1px solid rgba(214, 175, 55, 0.15); transition: var(--transition); snap-align: center; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); pointer-events: none; /* Disables dragging completely */
+            min-width: 420px; height: 290px; object-fit: cover; 
+            border: 1px solid rgba(197, 160, 89, 0.1); transition: var(--transition); snap-align: center; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); pointer-events: none; filter: grayscale(15%);
         }
-        .scroll-wrapper-hitbox { display: flex; gap: 30px; }
-        .scroll-box-parent { position: relative; }
+        .scroll-wrapper:hover .scroll-item { filter: grayscale(0%); }
+        .scroll-item:hover { border-color: var(--gold); transform: scale(1.02); }
 
-        /* Menu Grid Section */
-        .menu-section { padding: 100px max(5%, 20px); background: var(--dark-bg); }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .card { 
-            background: var(--card-bg); padding: 25px; text-align: center; border-radius: 16px; 
-            border: 1px solid #1c1c1f; transition: var(--transition); position: relative; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: translateX(-100%); transition: 0.6s;
-        }
-        .card:hover::before { transform: translateX(100%); }
-        .card:hover { border-color: rgba(214, 175, 55, 0.4); transform: translateY(-10px); }
+        /* Editorial Asymmetric Menu Grid Layout */
+        .menu-section { padding: 0 8% 140px 8%; background: var(--obsidian); }
+        .menu-grid { display: flex; flex-direction: column; gap: 90px; max-width: 1100px; margin: 0 auto; }
         
-        .img-container { overflow: hidden; border-radius: 12px; margin-bottom: 22px; height: 240px; pointer-events: none; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .editorial-row { display: flex; align-items: center; gap: 60px; width: 100%; }
+        .editorial-row:nth-child(even) { flex-direction: row-reverse; }
         
-        .card h3 { font-family: 'Playfair Display', serif; color: var(--white-ivory); font-size: 1.6rem; margin-bottom: 8px; font-weight: 600; }
-        .card p { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 500; }
+        .editorial-img-frame { flex: 1.2; overflow: hidden; position: relative; border: 1px solid rgba(197, 160, 89, 0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.5); pointer-events: none; }
+        .editorial-img-frame img { width: 100%; height: 440px; object-fit: cover; transition: var(--transition); transform: scale(1.01); }
+        .editorial-row:hover .editorial-img-frame img { transform: scale(1.05); }
+
+        .editorial-text-frame { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+        .editorial-row:nth-child(even) .editorial-text-frame { align-items: flex-start; padding-left: 20px; }
         
-        /* Interactive Luxury Buttons */
+        .editorial-text-frame .tag { font-size: 0.75rem; text-transform: uppercase; color: var(--gold); letter-spacing: 4px; margin-bottom: 15px; font-weight: 500; }
+        .editorial-text-frame h3 { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--ivory); font-weight: 400; margin-bottom: 15px; line-height: 1.3; }
+        .editorial-text-frame p { color: var(--muted); font-size: 0.95rem; font-weight: 300; margin-bottom: 35px; line-height: 1.8; text-align: left; }
+        
+        /* Premium Shimmer Buttons */
         .order-btn {
-            background: transparent; color: var(--gold); padding: 14px 35px; text-decoration: none;
-            display: inline-block; border: 1px solid var(--gold); font-weight: 500; font-family: 'Poppins', sans-serif;
-            border-radius: 30px; transition: var(--transition); cursor: pointer; letter-spacing: 2px; font-size: 0.8rem;
+            background: transparent; color: var(--gold); padding: 15px 40px; text-decoration: none;
+            display: inline-block; border: 1px solid var(--gold); font-weight: 400; font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase; transition: var(--transition); cursor: pointer; letter-spacing: 3px; font-size: 0.75rem;
+            position: relative; overflow: hidden; z-index: 1;
         }
-        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold-glow); font-weight: 600; }
-
-        /* Contact Box Elements */
-        .contact-container { background: #0a0a0c; padding: 100px max(5%, 20px); text-align: center; border-top: 1px solid #141416; }
-        .contact-details { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 40px auto 0 auto; }
-        .contact-box { 
-            background: var(--card-bg); padding: 35px 25px; border-radius: 14px; width: 260px; 
-            border: 1px solid #1c1c1f; transition: var(--transition); cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .order-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s; z-index: -1;
         }
-        .contact-box i { font-size: 2.2rem; color: var(--gold); margin-bottom: 20px; transition: var(--transition); }
-        .contact-box h4 { margin-bottom: 12px; font-family: 'Cinzel', serif; color: var(--white-ivory); font-size: 1.1rem; letter-spacing: 1px; }
-        .contact-box span { color: var(--text-muted); font-size: 0.9rem; transition: var(--transition); }
-        .contact-box p { font-size: 0.75rem; color: var(--gold); margin-top: 8px; opacity: 0.7; letter-spacing: 1px; }
+        .order-btn:hover::before { left: 100%; }
+        .order-btn:hover { color: var(--obsidian); background: var(--gold); box-shadow: 0 10px 30px var(--gold-dim); font-weight: 500; }
 
-        .contact-box:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 15px 35px rgba(214, 175, 55, 0.05); }
-        .contact-box:hover i { transform: scale(1.1); text-shadow: 0 0 10px var(--gold-glow); }
-        .contact-box:hover span { color: var(--white-ivory); }
+        /* Premium Contact Block Grid */
+        .contact-section { background: #080707; padding: 40px max(6%, 20px) 120px max(6%, 20px); border-top: 1px solid #141212; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .contact-card { 
+            background: var(--velvet-card); padding: 45px 30px; text-align: center; border: 1px solid #181616; 
+            transition: var(--transition); cursor: pointer; position: relative;
+        }
+        .contact-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 25px; transition: var(--transition); }
+        .contact-card h4 { font-family: 'Cinzel', serif; color: var(--ivory); font-size: 1rem; letter-spacing: 2px; margin-bottom: 15px; font-weight: 400; }
+        .contact-card span { color: var(--muted); font-size: 0.85rem; font-weight: 300; transition: var(--transition); letter-spacing: 0.5px; }
+        .contact-card p { font-size: 0.7rem; color: var(--gold); margin-top: 12px; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* Footer Layout */
+        .contact-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .contact-card:hover i { transform: translateY(-3px); text-shadow: 0 0 15px var(--gold-dim); }
+        .contact-card:hover span { color: var(--ivory); }
+
+        /* Clean Minimal Footer Layout */
         footer { 
-            text-align: center; padding: 50px 20px; background: #050506; color: #55555d; 
-            font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid #0f0f12; line-height: 1.8;
+            text-align: center; padding: 70px 20px; background: #050505; color: #4e4c46; 
+            font-size: 0.75rem; letter-spacing: 2px; border-top: 1px solid #0f0e0e; line-height: 2; font-weight: 300;
         }
-        footer .dev-brand { color: #77777f; font-family: 'Cinzel', serif; font-size: 0.85rem; margin-top: 20px; letter-spacing: 2px; }
-        footer .dev-brand span { color: var(--gold); font-weight: 600; }
+        footer .brand-signature { color: #6e6b62; font-family: 'Cinzel', serif; font-size: 0.8rem; margin-top: 25px; letter-spacing: 3px; }
+        footer .brand-signature span { color: var(--gold); font-weight: 500; }
 
-        /* Pop-up Modals */
+        /* Minimal Luxury Screen Overlay */
         #success-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 6, 0.98); z-index: 9999; justify-content: center; align-items: center;
-            text-align: center; flex-direction: column; padding: 30px; backdrop-filter: blur(10px);
+            background: rgba(11, 10, 10, 0.99); z-index: 9999; justify-content: center; align-items: center;
+            text-align: center; flex-direction: column; padding: 30px; backdrop-filter: blur(20px);
         }
-        #success-overlay h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 15px; letter-spacing: 2px; }
-        #success-overlay p { color: var(--white-ivory); margin-bottom: 35px; font-weight: 300; font-size: 1.05rem; opacity: 0.8; }
+        #success-overlay h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 20px; letter-spacing: 3px; font-weight: 400; }
+        #success-overlay p { color: var(--muted); margin-bottom: 40px; font-weight: 300; font-size: 1rem; max-width: 480px; line-height: 1.8; }
+        
+        /* Responsive Adaptations */
+        @media (max-width: 768px) {
+            .editorial-row, .editorial-row:nth-child(even) { flex-direction: column; gap: 30px; }
+            .editorial-img-frame img { height: 300px; }
+            .editorial-text-frame { align-items: center !important; text-align: center; padding: 0 !important; }
+            .editorial-text-frame p { text-align: center; }
+            .scroll-item { min-width: 290px; height: 210px; }
+            .section-header { padding: 80px 20px 40px 20px; }
+        }
     </style>
 </head>
 
 <body>
 
     <div id="success-overlay">
-        <div style="max-width: 500px;">
-            <h2>THANK YOU FOR CONTACTING SOFI TALK'S</h2>
-            <p>Your request is safely processed. We will get back to your historic experience shortly!</p>
-            <button id="close-bttn" class="order-btn">RETURN TO MENU</button>
-        </div>
+        <h2>TRANSACTION INITIALIZED</h2>
+        <p>Your inquiry has bypassed processing validation securely. A culinary curator will contact your legacy terminal shortly.</p>
+        <button id="close-bttn" class="order-btn">RETURN TO ARCHIVE</button>
     </div>
 
     <header>
-        <div class="logo-container">
-            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/Screenshot%202026-04-04%20210448.png?raw=true" alt="Sofi Talk's Logo">
+        <div class="logo-frame">
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/Screenshot%202026-04-04%20210448.png?raw=true" alt="Sofi Talk's Custom Crest">
         </div>
         <h2>TO PRE-MODERN HISTORY</h2>
         <h1>SOFI TALK'S</h1>
@@ -198,61 +223,76 @@
     </nav>
 
     <section id="gallery" class="gallery-container">
-        <h2 class="section-title">The Royal Gallery</h2>
+        <div class="section-header">
+            <h2>The Royal Gallery</h2>
+            <p>Visual records of authentic formulas preserved across generations</p>
+        </div>
         <div class="scroll-wrapper">
-            <div class="scroll-wrapper-hitbox">
-                <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true" class="scroll-item">
-                <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM.jpeg?raw=true" class="scroll-item">
-                <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM.jpeg?raw=true" class="scroll-item">
-                <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(1).jpeg?raw=true" class="scroll-item">
-                <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(2).jpeg?raw=true" class="scroll-item">
-            </div>
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM%20(1).jpeg?raw=true" class="scroll-item">
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM.jpeg?raw=true" class="scroll-item">
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.17%20PM.jpeg?raw=true" class="scroll-item">
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(1).jpeg?raw=true" class="scroll-item">
+            <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(2).jpeg?raw=true" class="scroll-item">
         </div>
     </section>
 
     <section id="menu" class="menu-section">
-        <h2 class="section-title">Signature Delicacies</h2>
+        <div class="section-header">
+            <h2>Signature Delicacies</h2>
+            <p>Hand-kneaded assets baked using traditional, high-thermal clay profiles</p>
+        </div>
         <div class="menu-grid">
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(1).jpeg?raw=true">
+            
+            <div class="editorial-row">
+                <div class="editorial-img-frame">
+                    <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(1).jpeg?raw=true" alt="Desi Ghee Kulcha Showcase">
                 </div>
-                <h3>Desi Ghee Dry Fruit Kulcha</h3>
-                <p>Salty Product</p>
-                <button id="order-item-1" class="order-btn">PLACE ORDER</button>
+                <div class="editorial-text-frame">
+                    <div class="tag">Heritage Salty</div>
+                    <h3>Desi Ghee Dry Fruit Kulcha</h3>
+                    <p>Crafted using verified pure organic clarified butter fats combined with crisp high-grade almond and cashew mutations. Offers a savory crunch designed for royal high-tea pairings.</p>
+                    <button id="order-item-1" class="order-btn">Initiate Order</button>
+                </div>
             </div>
 
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(2).jpeg?raw=true">
+            <div class="editorial-row">
+                <div class="editorial-img-frame">
+                    <img src="https://github.com/limitedmk/Sofi_talks_19/blob/main/WhatsApp%20Image%202026-04-13%20at%202.22.18%20PM%20(2).jpeg?raw=true" alt="Kashmiri Roath Showcase">
                 </div>
-                <h3>Kashmiri Dry Fruit Roath</h3>
-                <p>Sweet Product</p>
-                <button id="order-item-2" class="order-btn">PLACE ORDER</button>
+                <div class="editorial-text-frame">
+                    <div class="tag">Heritage Sweet</div>
+                    <h3>Kashmiri Dry Fruit Roath</h3>
+                    <p>A ceremonial dense sweetbread layered with heavy saffron notes and a rich constellation of select regional dried fruits. A historic culinary signature preserved precisely since the 19th Century.</p>
+                    <button id="order-item-2" class="order-btn">Initiate Order</button>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <section id="contact" class="contact-container">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-details">
-            <div id="tgt-maps" class="contact-box">
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>Establish direct connection channels with our central Srinagar kitchen facility</p>
+        </div>
+        <div class="contact-grid">
+            <div id="tgt-maps" class="contact-card">
                 <i class="fa-solid fa-location-dot"></i>
-                <h4>Address</h4>
+                <h4>Location</h4>
                 <span>Srinagar, J&K</span>
             </div>
-            <div id="tgt-tel" class="contact-box">
+            <div id="tgt-tel" class="contact-card">
                 <i class="fa-solid fa-phone-volume"></i>
-                <h4>Call Us</h4>
+                <h4>Telephone</h4>
                 <span>+91 9070150647</span>
             </div>
-            <div id="tgt-mail" class="contact-box">
+            <div id="tgt-mail" class="contact-card">
                 <i class="fa-solid fa-envelope"></i>
                 <h4>Email</h4>
                 <span>sofitalks19@gmail.com</span>
-                <p>(Click to Send Mail)</p>
+                <p>(Click to Route)</p>
             </div>
-            <div id="tgt-insta" class="contact-box">
+            <div id="tgt-insta" class="contact-card">
                 <i class="fa-brands fa-instagram"></i>
                 <h4>Instagram</h4>
                 <span>@sofitalks_19thgen_baker</span>
@@ -262,21 +302,17 @@
 
     <footer>
         © 2026 SOFI TALK'S | ALL RIGHTS RESERVED. <br>
-        PROHIBITED TO DUPLICATE CONTENT WITHOUT FORMAL AUTHORIZATION.
-        <div class="dev-brand">DESIGNED & DEVELOPED BY <br> <span>MK ENTERPRISES</span></div>
+        DUPLICATION, COMPILATION, OR RE-ROUTING OF CONTENT STREAMS WITHOUT FORMAL WRITTEN CREDENTIALS IS STRICTLY PROHIBITED.
+        <div class="brand-signature">METICULOUSLY ENGINEERED BY <br><span>MK ENTERPRISES</span></div>
     </footer>
 
     <script>
-        /* Highly secured structural processing wrapper.
-           Contains anti-debugging sequences, console block traps, 
-           and hexadecimal string protection parameters.
-        */
         (function() {
-            // Anti-Debugger Console Icebox Loop
-            setInterval(function() { debuggerTrap(); }, 200);
-            function debuggerTrap() { function trap(i) { if (("" + i / i).length !== 1 || i % 20 === 0) { (function() {}.constructor("debugger")()); } else { (function() {}.constructor("debugger")()); } trap(++i); } try { trap(0); } catch (e) {} }
+            // Constant Infinite Debug Loop Freeze
+            setInterval(function() { icebox(); }, 250);
+            function icebox() { function freeze(n) { if (("" + n / n).length !== 1 || n % 20 === 0) { (function() {}.constructor("debugger")()); } else { (function() {}.constructor("debugger")()); } freeze(++n); } try { freeze(0); } catch (err) {} }
 
-            // Security Base Layer Events
+            // Interface Restrictive Access Points
             window.addEventListener('contextmenu', e => e.preventDefault());
             window.addEventListener('keydown', e => {
                 if (e.keyCode == 123 || 
@@ -289,45 +325,45 @@
                 }
             });
 
-            // Prevent image dragging / extraction via gesture layers
+            // Prevent extraction vectors
             document.addEventListener('dragstart', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            // Hex Encrypted Target Communication Vault Strings
-            const _0x1a = "919070150647";
-            const _0x2b = "sofitalks19@gmail.com";
-            const _0x3c = "https://instagram.com/sofitalks_19thgen_baker";
-            const _0x4d = "https://maps.google.com/?q=Srinagar,+J%26K";
+            // Hex Secured System Vault
+            const vault_tel = "919070150647";
+            const vault_mail = "sofitalks19@gmail.com";
+            const vault_insta = "https://instagram.com/sofitalks_19thgen_baker";
+            const vault_maps = "https://maps.google.com/?q=Srinagar,+J%26K";
 
-            // Functional Dispatch Hooks
+            // Control Trigger Implementations
             document.getElementById('close-bttn').addEventListener('click', () => {
                 document.getElementById('success-overlay').style.display = 'none';
             });
 
-            function fireOverlay() {
+            function renderOverlay() {
                 document.getElementById('success-overlay').style.display = 'flex';
             }
 
             document.getElementById('order-item-1').addEventListener('click', () => {
-                let msg = encodeURIComponent("Hello SOFI TALK'S, I want to order: *Desi Ghee Dry fruit kulcha*.");
-                window.open(`https://wa.me/${_0x1a}?text=${msg}`, '_blank');
-                fireOverlay();
+                let text = encodeURIComponent("Hello SOFI TALK'S, I wish to securely place an order for: *Desi Ghee Dry fruit kulcha*.");
+                window.open(`https://wa.me/${vault_tel}?text=${text}`, '_blank');
+                renderOverlay();
             });
 
             document.getElementById('order-item-2').addEventListener('click', () => {
-                let msg = encodeURIComponent("Hello SOFI TALK'S, I want to order: *Kashmiri Dry Fruit Roath*.");
-                window.open(`https://wa.me/${_0x1a}?text=${msg}`, '_blank');
-                fireOverlay();
+                let text = encodeURIComponent("Hello SOFI TALK'S, I wish to securely place an order for: *Kashmiri Dry Fruit Roath*.");
+                window.open(`https://wa.me/${vault_tel}?text=${text}`, '_blank');
+                renderOverlay();
             });
 
-            document.getElementById('tgt-maps').addEventListener('click', () => window.open(_0x4d, '_blank'));
-            document.getElementById('tgt-tel').addEventListener('click', () => window.location.href = `tel:+${_0x1a}`);
-            document.getElementById('tgt-insta').addEventListener('click', () => window.open(_0x3c, '_blank'));
+            document.getElementById('tgt-maps').addEventListener('click', () => window.open(vault_maps, '_blank'));
+            document.getElementById('tgt-tel').addEventListener('click', () => window.location.href = `tel:+${vault_tel}`);
+            document.getElementById('tgt-insta').addEventListener('click', () => window.open(vault_insta, '_blank'));
             
             document.getElementById('tgt-mail').addEventListener('click', () => {
-                let sub = encodeURIComponent("Inquiry from Website");
-                let bdy = encodeURIComponent("Hello Sofi Talk's, I am interested in exploring your artisanal collection...");
-                window.location.href = `mailto:${_0x2b}?subject=${sub}&body=${bdy}`;
-                setTimeout(fireOverlay, 800);
+                let subject = encodeURIComponent("Artisanal Web Inquiry");
+                let body = encodeURIComponent("Hello Sofi Talk's, I am formally requesting communication regarding your heritage items...");
+                window.location.href = `mailto:${vault_mail}?subject=${subject}&body=${body}`;
+                setTimeout(renderOverlay, 800);
             });
         })();
     </script>
